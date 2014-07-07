@@ -49,7 +49,7 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mysqlLogin := fmt.Sprintf("%s:%s@tcp(db.civis.sadbox.org:3306)/greeting", config.DBUsername, config.DBPassword)
+	mysqlLogin := fmt.Sprintf("%s:%s@tcp(db.civis.sadbox.org:3306)/test_application", config.DBUsername, config.DBPassword)
 	log.Println(mysqlLogin)
 	db, err = sql.Open("mysql", mysqlLogin)
 	if err != nil {
