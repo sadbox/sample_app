@@ -26,7 +26,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func init() {
-	configfile, err := os.Open("config.json")
+	configfile, err := os.Open("/etc/sample_app_config.json")
 	if err != nil {
 		log.Fatal(err)
 	}
