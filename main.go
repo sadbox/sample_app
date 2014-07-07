@@ -22,7 +22,22 @@ type Config struct {
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, world!<br>Just testing!")
+	rows, err := db.Query("SELECT * FROM greetings")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var greeting string
+		var language string
+		err = rows.Scan(&greeting, &language)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		fmt.Fprintf(w, "%s, world! (%s)\n", greeting, language)
+	}
 }
 
 func init() {
